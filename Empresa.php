@@ -81,7 +81,7 @@ class Empresa{
     // Método que recibe por parámetro una coleccion de códigos de motos y  por cada elemento de la colección se busca el objeto moto correspondiente al código y se incorpora a la coleccion de motos de la instancia Venta que debe ser creada.
     public function registrarVenta($colCodigosMoto, $objCliente) {
 
-        $precioFinalVenta = 0;
+        $ventaCompleta = 0;
         $motosVenta = [];
         $i = 0;
         $encontrado = false;
@@ -93,14 +93,14 @@ class Empresa{
 
             if ($moto != null && $moto->getActiva() == true) {
                 $motosVenta[] = $moto;
-                $precioFinalVenta += $moto->darPrecioVenta();
+                $ventaCompleta += $moto->darPrecioVenta();
             }
             $i++;
         }
 
         // Crear la venta solo si hay al menos una moto activa
         if (!empty($motosVenta)) {
-            $venta = new Venta(count($this->getArrayVentas()) + 1, date("d-m-Y"), $objCliente, $motosVenta, $precioFinalVenta);
+            $venta = new Venta(count($this->getArrayVentas()) + 1, date("d-m-Y"), $objCliente, $motosVenta, $ventaCompleta);
             $i = 0;
             while ($i < count($motosVenta)) {
                 $venta->incorporarMoto($motosVenta[$i]);
@@ -108,7 +108,7 @@ class Empresa{
             }
             $this->setArrayVentas($venta);
         }
-        return $precioFinalVenta;
+        return $ventaCompleta;
     }
     
 
