@@ -64,7 +64,7 @@ class Venta{
 
         while ($i < count($arrayMotos) && !$encontrado) {
             if ($arrayMotos[$i]->getActiva()) {
-                $arrayMotos[] = $objMoto;
+                $arrayMotos[] = $objMoto; // array_push($arrayMotos, $objMoto); otra forma de escribir 
                 $this->setPrecioFinal($this->getPrecioFinal() + $objMoto->darPrecioVenta());
                 $encontrado = true;
             }
