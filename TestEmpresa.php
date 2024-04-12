@@ -12,7 +12,7 @@ $obMoto1 = new Moto(11, 2230000, 2022, "Benelli Imperiale 400", 85, true);
 $obMoto2 = new Moto(12, 584000, 2021, "Zanella Zr 150 Ohc", 70, true);
 $obMoto3 = new Moto(13, 999900, 2023, "Zanella Patagonian Eagle 250", 55, false);
 $empresa = new Empresa("Alta Gama", "Av. Argenetine 123", [$objCliente1, $objCliente2], [$obMoto1, $obMoto2, $obMoto3], []);
-
+// Tengo que agregar $colCodigosMotos, para que los recorra en un foreach y luego vea si existe ese codigo, agrupar en array
 
 
 // Invoco al metodo registrarVenta
