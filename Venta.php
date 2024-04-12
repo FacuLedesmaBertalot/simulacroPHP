@@ -70,7 +70,7 @@ class Venta{
             }
             $i++;
         }
-        return $arrayMotos;
+        return $encontrado;
     }
 
 
