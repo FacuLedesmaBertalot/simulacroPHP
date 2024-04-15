@@ -99,7 +99,7 @@ class Empresa{
         }
 
         // Crear la venta solo si hay al menos una moto activa
-        if ($motosVenta > 0) {
+        if (count($motosVenta) > 0) {
             $venta = new Venta(count($this->getArrayVentas()) + 1, date("d-m-Y"), $objCliente, $motosVenta, $ventaCompleta);
             $i = 0;
             while ($i < count($motosVenta)) {
