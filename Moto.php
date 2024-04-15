@@ -70,7 +70,7 @@ class Moto{
         if(!$this->getActiva()) {
             $precio = -1;
         } else {
-            $anioActual = date("Y");
+            $anioActual = intval(date("Y"));
             $aniosTranscurridos = $anioActual - $this->getAnioFabricacion();
             $precio = $this->getCosto() + $this->getCosto() * ($aniosTranscurridos * $this->getPorcIncrAnual() / 100);
         }

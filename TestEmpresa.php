@@ -12,36 +12,17 @@ $obMoto1 = new Moto(11, 2230000, 2022, "Benelli Imperiale 400", 85, true);
 $obMoto2 = new Moto(12, 584000, 2021, "Zanella Zr 150 Ohc", 70, true);
 $obMoto3 = new Moto(13, 999900, 2023, "Zanella Patagonian Eagle 250", 55, false);
 $empresa = new Empresa("Alta Gama", "Av. Argenetine 123", [$objCliente1, $objCliente2], [$obMoto1, $obMoto2, $obMoto3], []);
-// Tengo que agregar $colCodigosMotos, para que los recorra en un foreach y luego vea si existe ese codigo, agrupar en array
 
 
 // Invoco al metodo registrarVenta
-$precioFinalVenta1 = $empresa->registrarVenta([11, 12, 13] , $objCliente1);
-if ($precioFinalVenta1 > 0) {
-    echo "---------------------------------------\n";
-    echo "Venta registrada exitosamente.\n";
-} else {
-    echo "---------------------------------------\n";
-    echo "No se pudo registrar la venta.\n";
-}
+$precioVenta1 = $empresa->registrarVenta([11, 12, 13] , $objCliente1);
+echo "Precio Venta: " .$precioVenta1. "\n";
 
-$precioFinalVenta2 = $empresa->registrarVenta([0] , $objCliente2);
-if ($precioFinalVenta2 > 0) {
-    echo "---------------------------------------\n";
-    echo "Venta registrada exitosamente.\n";
-} else {
-    echo "---------------------------------------\n";
-    echo "No se pudo registrar la venta.\n";
-}
+$precioVenta2 = $empresa->registrarVenta([0] , $objCliente2);
+echo "Precio Venta: " .$precioVenta2. "\n";
 
-$precioFinalVenta3 = $empresa->registrarVenta([0] , $objCliente2);
-if ($precioFinalVenta3 > 0) {
-    echo "---------------------------------------\n";
-    echo "Venta registrada exitosamente.\n";
-} else {
-    echo "---------------------------------------\n";
-    echo "No se pudo registrar la venta.\n";
-}
+$precioVenta3 = $empresa->registrarVenta([2] , $objCliente2);
+echo "Precio Venta: " .$precioVenta3. "\n";
 
 
 

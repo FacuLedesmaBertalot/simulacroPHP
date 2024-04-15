@@ -68,7 +68,7 @@ class Empresa{
         while ($i < count($motos) && !$encontrado) {
             $moto = $motos[$i];
 
-            if ($moto->getCodigo() === $codigoMoto) {
+            if ($moto->getCodigo() == $codigoMoto) {
                 $motoEncontrada = $moto;
                 $encontrado = true;
             }
@@ -93,7 +93,7 @@ class Empresa{
 
             if ($moto != null && $moto->getActiva() == true) {
                 $motosVenta[] = $moto;
-                $ventaCompleta += $moto->darPrecioVenta();
+                $ventaCompleta = $ventaCompleta + $moto->darPrecioVenta();
             }
             $i++;
         }
