@@ -78,14 +78,11 @@ class Moto{
     }
 
 
-
     // __toString
     public function __toString() {
         $estado = $this->getActiva() ? "Disponible" : "Fuera de Stock";
         return "Código: " .$this->getCodigo(). ".\nCosto: $" .$this->getCosto(). ".\nAño de Fabricación: " .$this->getAnioFabricacion(). "\nDescripcion: " .$this->getDescripcion(). ".\nPorcentaje Incremento Anual: " .$this->getPorcIncrAnual(). ".\nEstado: ".$estado. ".\n";
     }
-
-
 
 }
 ?>

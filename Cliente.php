@@ -54,7 +54,6 @@ class Cliente{
     }
 
 
-
     // __toString
     public function __toString()
     {
@@ -63,5 +62,4 @@ class Cliente{
     }
 
 }
-
 ?>

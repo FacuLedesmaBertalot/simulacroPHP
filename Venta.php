@@ -1,6 +1,5 @@
 <?php
 
-
 class Venta{
 
     // Atributos
@@ -74,8 +73,6 @@ class Venta{
     }
 
 
-
-
     // __toString
     public function __toString()
     {
@@ -89,9 +86,6 @@ class Venta{
         }
         return $info;
     }
-    
-
-
 
 }
 
