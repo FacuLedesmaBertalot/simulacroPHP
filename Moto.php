@@ -67,12 +67,13 @@ class Moto{
     // Método que calcula el valor por el cual puede ser vendida una moto
     public function darPrecioVenta() {
         $precio = null;
-        if(!$this->getActiva()) {
+        if($this->getActiva() == false) {
             $precio = -1;
         } else {
+            $costoBase = $this->getCosto();
             $anioActual = intval(date("Y"));
             $aniosTranscurridos = $anioActual - $this->getAnioFabricacion();
-            $precio = $this->getCosto() + $this->getCosto() * ($aniosTranscurridos * $this->getPorcIncrAnual() / 100);
+            $precio = $costoBase + ($costoBase * ($aniosTranscurridos * $this->getPorcIncrAnual() / 100)); // Aca la profe no tiene la division /100
         }
         return $precio;
     }

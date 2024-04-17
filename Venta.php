@@ -11,11 +11,11 @@ class Venta{
 
     public function __construct($numero, $fecha, $cliente, $arrayMotos, $precioFinal)
     {
-        $this->numero= $numero;
+        $this->numero = $numero;
         $this->fecha = $fecha;
         $this->cliente = $cliente;
         $this->arrayMotos = $arrayMotos;
-        $this->precioFinal= $precioFinal;
+        $this->precioFinal = $precioFinal;
     }
 
     // Getters
@@ -73,20 +73,33 @@ class Venta{
     }
 
 
+    /**
+     * Metodo que retorna una variable de tipo string que contiene todas las motos de arrayMotos
+     * 
+     * @return string
+     */
+    public function arrayMotosAString() {
+        // string $cadena
+        // array $motos
+        $cadena = "";
+        $motos = $this->getArrayMotos();
+
+        for($i = 0 ; $i < count($motos) ; $i++) {
+            $cadena = $cadena ."Moto n° [" .$i. "]:\n".$motos[$i]."\n---\n";
+        }
+        return $cadena;
+    }
+
+
     // __toString
     public function __toString()
     {
         $info = "Número de venta: " . $this->getNumero() . "\nFecha: " .$this->getFecha(). ".\nCliente: " . $this->getCliente() . ".\nPrecio final: $" . $this->getPrecioFinal() . ".\nMotos en la venta:\n";
 
-        $motos = $this->getArrayMotos(); // Obtiene el array de motos
-        $i = 0;
-        while ($i < count($motos)) {
-            $info .= $motos[$i] . "\n";
-            $i++;
-        }
+        $info .= "Coleccion de Motos: ---\n" .$this->arrayMotosAString(). "---\n";
         return $info;
     }
-
 }
+
 
 ?>
