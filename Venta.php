@@ -57,19 +57,17 @@ class Venta{
 
     // Método que incorpora una moto a la venta 
     public function incorporarMoto($objMoto) {
-        $i = 0;
-        $encontrado = false;
-        $arrayMotos = $this->getArrayMotos();
 
-        while ($i < count($arrayMotos) && !$encontrado) {
-            if ($arrayMotos[$i]->getActiva()) {
-                $arrayMotos[] = $objMoto; // array_push($arrayMotos, $objMoto); otra forma de escribir 
-                $this->setPrecioFinal($this->getPrecioFinal() + $objMoto->darPrecioVenta());
-                $encontrado = true;
-            }
-            $i++;
+        if ($objMoto->getActiva()) {
+            $colMotosCopia = $this->getArrayMotos();
+            array_push($colMotosCopia, $objMoto);
+            $this->setArrayMotos($colMotosCopia);
+
+            $precioMoto = $objMoto->darPrecioVenta();
+            $precioFinalCopia = $this->getPrecioFinal();
+            $precioFinalCopia = $precioFinalCopia + $precioMoto;
+            $this->setPrecioFinal($precioFinalCopia);
         }
-        return $encontrado;
     }
 
 
