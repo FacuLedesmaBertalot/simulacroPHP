@@ -69,10 +69,9 @@ class Empresa{
         $colMotos = $this->getColMotos();
 
         while ($i < count($colMotos) && !$motoEncontrada) {
-            $moto = $colMotos[$i];
 
-            if ($moto->getCodigo() == $codigoMoto) {
-                $motoObtenida = $colMotos[$moto];
+            if ($colMotos[$i]->getCodigo() == $codigoMoto) {
+                $motoObtenida = $colMotos[$i];
                 $motoEncontrada = true;
             }
             $i++;
