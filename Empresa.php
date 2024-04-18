@@ -46,13 +46,13 @@ class Empresa{
         $this->direccion = $direccion;
     }
     public function setColClientes($colClientes) {
-        $this->colClientes[] = $colClientes;
+        $this->colClientes = $colClientes;
     }
     public function setColMotos($colMotos) {
-        $this->colMotos[] = $colMotos;
+        $this->colMotos = $colMotos;
     }
     public function setColVentas($colVentas) {
-        $this->colVentas[] = $colVentas;
+        $this->colVentas = $colVentas;
     }
 
 
@@ -91,31 +91,27 @@ class Empresa{
     public function registrarVenta($colCodigosMoto, $objCliente) {
 
         $importeFinal = 0;
-        $motosVenta = [];
-        $i = 0;
-        $encontrado = false;
-        $totalMotos = count($colCodigosMoto);
 
-        while( $i < $totalMotos && !$encontrado) {
-            $codigoMoto = $colCodigosMoto[$i];
-            $moto = $this->retornarMoto($codigoMoto);
+        if ($objCliente->getEstado() == true ) {
+            $motosAVender = [];
+            $colMotos = $this->getColMotos();
 
-            if ($moto != null && $moto->getActiva() == true) {
-                $motosVenta[] = $moto;
-                $importeFinal = $importeFinal + $moto->darPrecioVenta();
+            foreach ($colCodigosMoto as $unCodigoMoto) {
+                $unObjMoto = $this->retornarMoto($unCodigoMoto);
+
+                if ($unObjMoto != null && $unObjMoto->getActiva()) {
+                    array_push($motosAVender, $unObjMoto);
+                    $importeFinal = $importeFinal + $unObjMoto->darPrecioVenta();
+                }
             }
-            $i++;
-        }
-
-        // Crear la venta solo si hay al menos una moto activa
-        if (count($motosVenta) > 0) {
-            $venta = new Venta(count($this->getColVentas()) + 1, date("d-m-Y"), $objCliente, $motosVenta, $importeFinal);
-            $i = 0;
-            while ($i < count($motosVenta)) {
-                $venta->incorporarMoto($motosVenta[$i]);
-                $i++;
+            if (count($motosAVender) > 0) {
+                $copiaColVentas = $this->getColVentas();
+                $idVenta = count($copiaColVentas) + 1;
+                $nuevaVenta = new Venta($idVenta, date("d-m-Y"), $objCliente, $motosAVender, $importeFinal);
+                array_push($copiaColVentas, $nuevaVenta);
+    
+                $this->setColVentas($copiaColVentas);
             }
-            $this->setColVentas($venta);
         }
         return $importeFinal;
     }

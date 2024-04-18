@@ -5,15 +5,15 @@ class Cliente{
     // Atributos
     private $nombre;
     private $apellido;
-    private $baja;
+    private $estado;
     private $tipoDocumento;
     private $DNI;
 
-    public function __construct($nombre, $apellido, $baja, $tipoDocumento, $DNI)
+    public function __construct($nombre, $apellido, $estado, $tipoDocumento, $DNI)
     {
         $this->nombre = $nombre;
         $this->apellido = $apellido;
-        $this->baja = $baja;
+        $this->estado = $estado;
         $this->tipoDocumento = $tipoDocumento;
         $this->DNI = $DNI;
     }
@@ -26,8 +26,8 @@ class Cliente{
     public function getApellido() {
         return $this->apellido;
     }
-    public function getBaja() {
-        return $this->baja;
+    public function getEstado() {
+        return $this->estado;
     }
     public function getTipoDocumento() {
         return $this->tipoDocumento;
@@ -43,8 +43,8 @@ class Cliente{
     public function setApellido($apellido) {
         $this->apellido = $apellido;
     }
-    public function setBaja($baja) {
-        $this->baja = $baja;
+    public function setEstado($estado) {
+        $this->estado = $estado;
     }
     public function setTipoDocumento($tipoDocumento) {
         $this->tipoDocumento = $tipoDocumento;
@@ -57,7 +57,7 @@ class Cliente{
     // __toString
     public function __toString()
     {
-        $estado = $this->getBaja() ? "Activo" : "Dado de Baja";
+        $estado = $this->getEstado() ? "Activo" : "Dado de Estado";
         return "\nNombre: " .$this->getNombre(). ".\nApellido: " .$this->getApellido(). "\nEstado: " .$estado. ".\nTipo Documento: " .$this->getTipoDocumento(). ".\nNúmero de Documento: " .$this->getDNI(). ".\n";
     }
 
