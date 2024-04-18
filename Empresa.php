@@ -139,10 +139,25 @@ class Empresa{
     }
 
 
+    // Retornar cadena
+    public function retornarCadenaDesdeColeccion($coleccion) {
+        $cadena = "";
+        foreach ($coleccion as $unElementoCol) {
+            $cadena = $cadena . " " . $unElementoCol . "\n";
+        }
+        return $cadena;
+    }
     // __toString
     public function __toString()
     {
-        return "\nDenominación: " .$this->getDenominacion(). ".\nDirección: " .$this->getDireccion(). ".\n";
+        $cadena = "\nDenominacion: " .$this->getDenominacion(). "\n";
+        $cadena = $cadena ."\nDireccion: " .$this->getDireccion(). "\n";
+
+        $cadena = $cadena ."------- Coleccion de Clientes: -------\n" . $this->retornarCadenaDesdeColeccion($this->getColClientes())."\n";
+        $cadena = $cadena ."------- Coleccion de Motos: -------\n" . $this->retornarCadenaDesdeColeccion($this->getColMotos())."\n";
+        $cadena = $cadena ."------- Coleccion de Ventas: -------\n" . $this->retornarCadenaDesdeColeccion($this->getColVentas())."\n";
+
+        return $cadena;
     }
     
 }
