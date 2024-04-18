@@ -60,6 +60,9 @@ class Empresa{
 
     // Método que recorre la colección de motos de la Empresa y retorna la referencia al objeto Moto cuyo código coincide con el recibido por parámetro
     public function retornarMoto($codigoMoto) {
+        //boolean $motoEncontrada
+        //int $i
+        //array $motoObtenida
         $motoObtenida = null;
         $i = 0;
         $motoEncontrada = false;
