@@ -118,24 +118,17 @@ class Empresa{
     // Método que recibe por parámetro el tipo y número de documento de un Cliente y retorna una colección con las ventas realizadas al cliente
     public function retornarVentasXCliente($tipo, $numDoc) {
 
-        $ventasCliente = [];
-        $ventas = $this->getColVentas(); // Obtener todas las ventas de la empresa
-        $i = 0;
-        $totalVentas = count($ventas);
-        $bandera = false;
+        $colVentaCliente = [];
+        $colVentas = $this->getColVentas(); // Obtener todas las ventas de la empresa
     
-        while ($i < $totalVentas && !$bandera) {
-            $venta = $ventas[$i];
-            $clienteVenta = $venta->getCliente();
-    
-            // Verificar si el tipo y número de documento coinciden
-            if (($clienteVenta->getTipoDocumento() == $tipo) && ($clienteVenta->getDNI() == $numDoc)) {
-                $ventasCliente[] = $venta; 
+        foreach ($colVentas as $unObjVenta) {
+
+            if ($unObjVenta->getCliente()->getTipoDocumento() == $tipo && $unObjVenta->getCliente()->getDNI() == $numDoc) {
+                array_push($colVentaCliente, $unObjVenta);
             }
-            $bandera = true;
-            $i++;
         }
-        return $ventasCliente;
+        
+        return $colVentaCliente;
     }
 
 
@@ -153,9 +146,9 @@ class Empresa{
         $cadena = "\nDenominacion: " .$this->getDenominacion(). "\n";
         $cadena = $cadena ."\nDireccion: " .$this->getDireccion(). "\n";
 
-        $cadena = $cadena ."------- Coleccion de Clientes: -------\n" . $this->retornarCadenaDesdeColeccion($this->getColClientes())."\n";
-        $cadena = $cadena ."------- Coleccion de Motos: -------\n" . $this->retornarCadenaDesdeColeccion($this->getColMotos())."\n";
-        $cadena = $cadena ."------- Coleccion de Ventas: -------\n" . $this->retornarCadenaDesdeColeccion($this->getColVentas())."\n";
+        $cadena = $cadena ."\n------- Coleccion de Clientes: -------\n" . $this->retornarCadenaDesdeColeccion($this->getColClientes())."\n";
+        $cadena = $cadena ."\n------- Coleccion de Motos: -------\n" . $this->retornarCadenaDesdeColeccion($this->getColMotos())."\n";
+        $cadena = $cadena ."\n------- Coleccion de Ventas: -------\n" . $this->retornarCadenaDesdeColeccion($this->getColVentas())."\n";
 
         return $cadena;
     }

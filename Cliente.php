@@ -57,7 +57,7 @@ class Cliente{
     // __toString
     public function __toString()
     {
-        $estado = $this->getEstado() ? "Activo" : "Dado de Estado";
+        $estado = $this->getEstado() ? "Activo" : "Dado de Baja";
         return "\nNombre: " .$this->getNombre(). ".\nApellido: " .$this->getApellido(). "\nEstado: " .$estado. ".\nTipo Documento: " .$this->getTipoDocumento(). ".\nNúmero de Documento: " .$this->getDNI(). ".\n";
     }
 
