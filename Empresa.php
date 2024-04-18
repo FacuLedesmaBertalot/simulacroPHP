@@ -94,23 +94,21 @@ class Empresa{
 
         if ($objCliente->getEstado() == true ) {
             $motosAVender = [];
-            $colMotos = $this->getColMotos();
+            $copiaColVentas = $this->getColVentas();
+            $idVenta = count($copiaColVentas) + 1;
+            $nuevaVenta = new Venta($idVenta, date("d/m/Y"), $objCliente, $motosAVender, 0);
 
             foreach ($colCodigosMoto as $unCodigoMoto) {
                 $unObjMoto = $this->retornarMoto($unCodigoMoto);
 
-                if ($unObjMoto != null && $unObjMoto->getActiva()) {
-                    array_push($motosAVender, $unObjMoto);
-                    $importeFinal = $importeFinal + $unObjMoto->darPrecioVenta();
+                if ($unObjMoto != null) {
+                    $nuevaVenta->incorporarMoto($unObjMoto);
                 }
             }
-            if (count($motosAVender) > 0) {
-                $copiaColVentas = $this->getColVentas();
-                $idVenta = count($copiaColVentas) + 1;
-                $nuevaVenta = new Venta($idVenta, date("d-m-Y"), $objCliente, $motosAVender, $importeFinal);
+            if (count($nuevaVenta->getArrayMotos()) > 0) {
                 array_push($copiaColVentas, $nuevaVenta);
-    
                 $this->setColVentas($copiaColVentas);
+                $importeFinal = $nuevaVenta->getPrecioFinal();
             }
         }
         return $importeFinal;
@@ -119,9 +117,9 @@ class Empresa{
 
     // Método que recibe por parámetro el tipo y número de documento de un Cliente y retorna una colección con las ventas realizadas al cliente
     public function retornarVentasXCliente($tipo, $numDoc) {
+
         $ventasCliente = [];
         $ventas = $this->getColVentas(); // Obtener todas las ventas de la empresa
-    
         $i = 0;
         $totalVentas = count($ventas);
         $bandera = false;
@@ -146,6 +144,6 @@ class Empresa{
     {
         return "\nDenominación: " .$this->getDenominacion(). ".\nDirección: " .$this->getDireccion(). ".\n";
     }
-
+    
 }
 ?>
