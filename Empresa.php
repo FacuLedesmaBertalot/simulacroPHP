@@ -6,18 +6,18 @@ class Empresa{
     // Atributos
     private $denominacion;
     private $direccion;
-    private $objClientes;
-    private $arrayObjMotos;
-    private $arrayVentas;
+    private $colClientes;
+    private $colMotos;
+    private $colVentas;
 
 
-    public function __construct($denominacion, $direccion, $objClientes, $arrayObjMotos, $arrayVentas)
+    public function __construct($denominacion, $direccion, $colClientes, $colMotos, $colVentas)
     {
         $this->denominacion = $denominacion;
         $this->direccion = $direccion;
-        $this->objClientes = $objClientes;
-        $this->arrayObjMotos = $arrayObjMotos;
-        $this->arrayVentas = $arrayVentas;
+        $this->colClientes = $colClientes;
+        $this->colMotos = $colMotos;
+        $this->colVentas = $colVentas;
     }
 
 
@@ -28,14 +28,14 @@ class Empresa{
     public function getDireccion() {
         return $this->direccion;
     }
-    public function getObjClientes() {
-        return $this->objClientes;
+    public function getColClientes() {
+        return $this->colClientes;
     }
-    public function getArrayObjMotos() {
-        return $this->arrayObjMotos;
+    public function getColMotos() {
+        return $this->colMotos;
     }
-    public function getArrayVentas() {
-        return $this->arrayVentas;
+    public function getColVentas() {
+        return $this->colVentas;
     }
 
     // Setters
@@ -45,14 +45,14 @@ class Empresa{
     public function setDireccion($direccion) {
         $this->direccion = $direccion;
     }
-    public function setObjClientes($objClientes) {
-        $this->objClientes[] = $objClientes;
+    public function setColClientes($colClientes) {
+        $this->colClientes[] = $colClientes;
     }
-    public function setArrayObjMotos($arrayObjMotos) {
-        $this->arrayObjMotos[] = $arrayObjMotos;
+    public function setColMotos($colMotos) {
+        $this->colMotos[] = $colMotos;
     }
-    public function setArrayVentas($arrayVentas) {
-        $this->arrayVentas[] = $arrayVentas;
+    public function setColVentas($colVentas) {
+        $this->colVentas[] = $colVentas;
     }
 
 
@@ -60,21 +60,21 @@ class Empresa{
 
     // Método que recorre la colección de motos de la Empresa y retorna la referencia al objeto Moto cuyo código coincide con el recibido por parámetro
     public function retornarMoto($codigoMoto) {
-        $motoEncontrada = null;
+        $motoObtenida = null;
         $i = 0;
-        $encontrado = false;
-        $motos = $this->getArrayObjMotos();
+        $motoEncontrada = false;
+        $colMotos = $this->getColMotos();
 
-        while ($i < count($motos) && !$encontrado) {
-            $moto = $motos[$i];
+        while ($i < count($colMotos) && !$motoEncontrada) {
+            $moto = $colMotos[$i];
 
             if ($moto->getCodigo() == $codigoMoto) {
-                $motoEncontrada = $moto;
-                $encontrado = true;
+                $motoObtenida = $colMotos[$moto];
+                $motoEncontrada = true;
             }
             $i++;
         }
-        return $motoEncontrada;
+        return $motoObtenida;
     }
 
 
@@ -100,13 +100,13 @@ class Empresa{
 
         // Crear la venta solo si hay al menos una moto activa
         if (count($motosVenta) > 0) {
-            $venta = new Venta(count($this->getArrayVentas()) + 1, date("d-m-Y"), $objCliente, $motosVenta, $ventaCompleta);
+            $venta = new Venta(count($this->getColVentas()) + 1, date("d-m-Y"), $objCliente, $motosVenta, $ventaCompleta);
             $i = 0;
             while ($i < count($motosVenta)) {
                 $venta->incorporarMoto($motosVenta[$i]);
                 $i++;
             }
-            $this->setArrayVentas($venta);
+            $this->setColVentas($venta);
         }
         return $ventaCompleta;
     }
@@ -115,7 +115,7 @@ class Empresa{
     // Método que recibe por parámetro el tipo y número de documento de un Cliente y retorna una colección con las ventas realizadas al cliente
     public function retornarVentasXCliente($tipo, $numDoc) {
         $ventasCliente = [];
-        $ventas = $this->getArrayVentas(); // Obtener todas las ventas de la empresa
+        $ventas = $this->getColVentas(); // Obtener todas las ventas de la empresa
     
         $i = 0;
         $totalVentas = count($ventas);
