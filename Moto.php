@@ -66,7 +66,7 @@ class Moto{
 
     // Método que calcula el valor por el cual puede ser vendida una moto
     public function darPrecioVenta() {
-        $precio = null;
+
         if($this->getActiva() == false) {
             $precio = -1;
         } else {
