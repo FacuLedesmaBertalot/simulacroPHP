@@ -80,14 +80,14 @@ class Empresa{
     }
 
 
-/**
- * Metodo registrarVenta($colCodigosMoto, $objCliente) metodo que recibe por parametro una coleccion de codigos de motos, la cual es recorrida, y por cada elemento de la coleccion la instancia Venta que debe ser creada. Recordar que no todos los clientes ni todas las motos, estan disponibles para registrar una venta en un momento determinado.
- * El metodo debe setear los variables instancias de venta que corresponda y retornar el importe final de la venta.
- * 
- * @param array $colCodigosMoto
- * @param Cliente $objCliente
- * @return float
- */
+    /**
+    * Metodo registrarVenta($colCodigosMoto, $objCliente) metodo que recibe por parametro una coleccion de codigos de motos, la cual es recorrida, y por cada elemento de la coleccion la instancia Venta que debe ser creada. Recordar que no todos los clientes ni todas las motos, estan disponibles para registrar una venta en un momento determinado.
+    * El metodo debe setear los variables instancias de venta que corresponda y retornar el importe final de la venta.
+    * 
+    * @param array $colCodigosMoto
+    * @param Cliente $objCliente
+    * @return float
+    */
     public function registrarVenta($colCodigosMoto, $objCliente) {
 
         $importeFinal = 0;
