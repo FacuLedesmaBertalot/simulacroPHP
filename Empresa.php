@@ -80,10 +80,17 @@ class Empresa{
     }
 
 
-    // Método que recibe por parámetro una coleccion de códigos de motos y  por cada elemento de la colección se busca el objeto moto correspondiente al código y se incorpora a la coleccion de motos de la instancia Venta que debe ser creada.
+/**
+ * Metodo registrarVenta($colCodigosMoto, $objCliente) metodo que recibe por parametro una coleccion de codigos de motos, la cual es recorrida, y por cada elemento de la coleccion la instancia Venta que debe ser creada. Recordar que no todos los clientes ni todas las motos, estan disponibles para registrar una venta en un momento determinado.
+ * El metodo debe setear los variables instancias de venta que corresponda y retornar el importe final de la venta.
+ * 
+ * @param array $colCodigosMoto
+ * @param Cliente $objCliente
+ * @return float
+ */
     public function registrarVenta($colCodigosMoto, $objCliente) {
 
-        $ventaCompleta = 0;
+        $importeFinal = 0;
         $motosVenta = [];
         $i = 0;
         $encontrado = false;
@@ -95,14 +102,14 @@ class Empresa{
 
             if ($moto != null && $moto->getActiva() == true) {
                 $motosVenta[] = $moto;
-                $ventaCompleta = $ventaCompleta + $moto->darPrecioVenta();
+                $importeFinal = $importeFinal + $moto->darPrecioVenta();
             }
             $i++;
         }
 
         // Crear la venta solo si hay al menos una moto activa
         if (count($motosVenta) > 0) {
-            $venta = new Venta(count($this->getColVentas()) + 1, date("d-m-Y"), $objCliente, $motosVenta, $ventaCompleta);
+            $venta = new Venta(count($this->getColVentas()) + 1, date("d-m-Y"), $objCliente, $motosVenta, $importeFinal);
             $i = 0;
             while ($i < count($motosVenta)) {
                 $venta->incorporarMoto($motosVenta[$i]);
@@ -110,7 +117,7 @@ class Empresa{
             }
             $this->setColVentas($venta);
         }
-        return $ventaCompleta;
+        return $importeFinal;
     }
     
 
